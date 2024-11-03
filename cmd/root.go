@@ -13,7 +13,7 @@ import (
 
 var db, _ = sql.Open("sqlite3", "sqlite.db")
 var productDb = dbInfra.NewProductDb(db)
-var productService = application.NewProductService(productDb)
+var productService = application.ProductService{Persistence: productDb}
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{

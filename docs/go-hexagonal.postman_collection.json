@@ -1,0 +1,574 @@
+{
+	"info": {
+		"_postman_id": "0c3c3881-38bc-4c2f-86f0-622f07633f6c",
+		"name": "go-hexagonal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17130971"
+	},
+	"item": [
+		{
+			"name": "get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/product/{id}",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"{id}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/product/56bc9a28-67c2-4205-899e-850b811d5146",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product",
+								"56bc9a28-67c2-4205-899e-850b811d5146"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 14:39:51 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "102"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ID\": \"56bc9a28-67c2-4205-899e-850b811d5146\",\n    \"Name\": \"Product Example\",\n    \"Price\": 30,\n    \"Status\": \"disabled\"\n}"
+				},
+				{
+					"name": "404 - not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/product/25",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product",
+								"25"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 14:40:16 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "add product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"{{$randomProduct}}\",\n    \"price\" : \"5115w56d\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9000/product",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"{{$randomProduct}}\",\n    \"price\" : {{$randomPrice}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/product",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 14:49:26 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "96"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ID\": \"f66ca687-c990-472d-82de-0f5cfc39883d\",\n    \"Name\": \"Pizza\",\n    \"Price\": 813.05,\n    \"Status\": \"disabled\"\n}"
+				},
+				{
+					"name": "500 - error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"{{$randomProduct}}\",\n    \"pri\" : {{$randomPrice}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/product",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 14:50:09 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"the price must be greater than zero\"\n}"
+				},
+				{
+					"name": "500 - json format error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"{{$randomProduct}}\",\n    \"price\" : {{$randomPrice}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/product",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 14:51:57 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "94"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"json: cannot unmarshal string into Go struct field Product.price of type float64\"\n}"
+				},
+				{
+					"name": "500 - validate error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"{{$randomProduct}}\",\n    \"price\" : -100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/product",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 14:53:29 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"the price must be greater than zero\"\n}"
+				}
+			]
+		},
+		{
+			"name": "enable product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/product/{id}/enable",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"{id}",
+						"enable"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 - not found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/product/{{$randomUUID}}/enable",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product",
+								"{{$randomUUID}}",
+								"enable"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 14:59:59 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "200 - enabled",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/product/f66ca687-c990-472d-82de-0f5cfc39883d/enable",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product",
+								"f66ca687-c990-472d-82de-0f5cfc39883d",
+								"enable"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 15:00:44 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "95"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ID\": \"f66ca687-c990-472d-82de-0f5cfc39883d\",\n    \"Name\": \"Pizza\",\n    \"Price\": 813.05,\n    \"Status\": \"enabled\"\n}"
+				},
+				{
+					"name": "500 - not valid to disable",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/product/f66ca687-c990-472d-82de-0f5cfc39883d/enable",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product",
+								"f66ca687-c990-472d-82de-0f5cfc39883d",
+								"enable"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 15:02:38 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"the price must be greater than zero to enable the product\"\n}"
+				}
+			]
+		},
+		{
+			"name": "disable product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/product/{id}/disable",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"{id}",
+						"disable"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "500 - not valid to disable",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/product/f66ca687-c990-472d-82de-0f5cfc39883d/disable",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product",
+								"f66ca687-c990-472d-82de-0f5cfc39883d",
+								"disable"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 15:01:39 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"the price must be zero in order to have the product disabled\"\n}"
+				},
+				{
+					"name": "200 - disabled",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/product/f66ca687-c990-472d-82de-0f5cfc39883d/disable",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"product",
+								"f66ca687-c990-472d-82de-0f5cfc39883d",
+								"disable"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Nov 2024 15:02:24 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "91"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ID\": \"f66ca687-c990-472d-82de-0f5cfc39883d\",\n    \"Name\": \"Pizza\",\n    \"Price\": 0,\n    \"Status\": \"disabled\"\n}"
+				}
+			]
+		}
+	]
+}
